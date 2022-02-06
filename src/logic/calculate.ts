@@ -26,6 +26,10 @@ const isAllClearButton = (button: string) => {
   return button === 'AC';
 };
 
+const isEqualButton = (button: string) => {
+  return button === '=';
+};
+
 const handleNumberButton = (button: string, state: State): State => {
   if (state.current === '0') {
     return {
@@ -35,7 +39,6 @@ const handleNumberButton = (button: string, state: State): State => {
       isNextClear: false,
     };
   }
-
   return {
     ...state,
     current: state.current + button,
@@ -103,6 +106,19 @@ const handleAllClearButton = (): State => {
   };
 };
 
+const handleEqualButton = (state: State): State => {
+  if (state.operator === null) {
+    return state;
+  }
+  const nextValue = operate(state);
+  return {
+    current: `${nextValue}`,
+    operand: 0,
+    operator: null,
+    isNextClear: true,
+  };
+};
+
 export const calculate = (button: string, state: State): State => {
   // 数値かどうか
   if (isNumberButton(button)) {
@@ -125,7 +141,8 @@ export const calculate = (button: string, state: State): State => {
     return handleAllClearButton();
   }
   // // = かどうか
-  // if (isEqualButton(button)) {
-  // }
+  if (isEqualButton(button)) {
+    return handleEqualButton(state);
+  }
   return state;
 };
