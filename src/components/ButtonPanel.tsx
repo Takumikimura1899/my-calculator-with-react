@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
-export const ButtonPanel = () => {
+type Props = {
+  buttonHandler: MouseEventHandler<HTMLButtonElement>;
+};
+
+export const ButtonPanel: React.FC<Props> = ({ buttonHandler }) => {
   return (
     <div>
       <div>
-        <button>7</button>
+        <button id={'7'} onClick={buttonHandler}>
+          7
+        </button>
         <button>8</button>
         <button>9</button>
         <button>AC</button>
