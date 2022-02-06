@@ -10,6 +10,10 @@ const isNumberButton = (button: string) => {
   return NumArray.includes(button);
 };
 
+const isOperatorButton = (button: string) => {
+  return button === '+' || button === '-';
+};
+
 const handleNumberButton = (button: string, state: State): State => {
   if (state.current === '0') {
     return {
@@ -26,14 +30,44 @@ const handleNumberButton = (button: string, state: State): State => {
   };
 };
 
+const operate = (state: State): number => {
+  const current = parseFloat(state.current);
+  if (state.operator === '+') {
+    return state.operand + current;
+  }
+  if (state.operator === '-') {
+    return state.operand - current;
+  }
+  return current;
+};
+
+const handleOperatorButton = (button: string, state: State): State => {
+  if (state.operator === null) {
+    return {
+      current: state.current,
+      operand: parseFloat(state.current),
+      operator: button,
+      isNextClear: true,
+    };
+  }
+  const nextValue = operate(state);
+  return {
+    current: `${nextValue}`,
+    operand: nextValue,
+    operator: button,
+    isNextClear: true,
+  };
+};
+
 export const calculate = (button: string, state: State): State => {
   // 数値かどうか
   if (isNumberButton(button)) {
     return handleNumberButton(button, state);
   }
   // オペレーターかどうか
-  // if (isOperatorButton(button)) {
-  // }
+  if (isOperatorButton(button)) {
+    return handleOperatorButton(button, state);
+  }
   // // .かどうか
   // if (isDotButton(button)) {
   // }
