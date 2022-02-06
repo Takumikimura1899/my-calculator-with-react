@@ -5,14 +5,9 @@ type Props = {
   buttonHandler?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const ButtonAtom: React.FC<Props> = ({ id }) => {
-  const buttonHandlerOnClick: MouseEventHandler<HTMLButtonElement> = (
-    event,
-  ) => {
-    console.log('buttonHandlerOnClick', event.currentTarget.id);
-  };
+export const ButtonAtom: React.FC<Props> = ({ id, buttonHandler }) => {
   return (
-    <button onClick={buttonHandlerOnClick} id={id}>
+    <button onClick={buttonHandler} id={id}>
       {id}
     </button>
   );
