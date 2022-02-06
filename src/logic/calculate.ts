@@ -14,6 +14,10 @@ const isOperatorButton = (button: string) => {
   return button === '+' || button === '-';
 };
 
+const isDotButton = (button: string) => {
+  return button === '.';
+};
+
 const handleNumberButton = (button: string, state: State): State => {
   if (state.current === '0') {
     return {
@@ -59,6 +63,16 @@ const handleOperatorButton = (button: string, state: State): State => {
   };
 };
 
+const handleDotButton = (state: State): State => {
+  if (state.current.indexOf('.') !== -1) {
+    return state;
+  }
+  return {
+    ...state,
+    current: `${state.current}.`,
+  };
+};
+
 export const calculate = (button: string, state: State): State => {
   // 数値かどうか
   if (isNumberButton(button)) {
@@ -69,8 +83,9 @@ export const calculate = (button: string, state: State): State => {
     return handleOperatorButton(button, state);
   }
   // // .かどうか
-  // if (isDotButton(button)) {
-  // }
+  if (isDotButton(button)) {
+    return handleDotButton(state);
+  }
   // // 削除ボタンかどうか
   // if (isDeleteButton(button)) {
   // }
