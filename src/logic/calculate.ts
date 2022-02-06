@@ -22,6 +22,10 @@ const isDeleteButton = (button: string) => {
   return button === 'D';
 };
 
+const isAllClearButton = (button: string) => {
+  return button === 'AC';
+};
+
 const handleNumberButton = (button: string, state: State): State => {
   if (state.current === '0') {
     return {
@@ -90,6 +94,15 @@ const handleDeleteButton = (state: State): State => {
   };
 };
 
+const handleAllClearButton = (): State => {
+  return {
+    current: '0',
+    operand: 0,
+    operator: null,
+    isNextClear: false,
+  };
+};
+
 export const calculate = (button: string, state: State): State => {
   // 数値かどうか
   if (isNumberButton(button)) {
@@ -108,8 +121,9 @@ export const calculate = (button: string, state: State): State => {
     return handleDeleteButton(state);
   }
   // // ACかどうか
-  // if (isAllClearButton(button)) {
-  // }
+  if (isAllClearButton(button)) {
+    return handleAllClearButton();
+  }
   // // = かどうか
   // if (isEqualButton(button)) {
   // }
