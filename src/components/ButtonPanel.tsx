@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from 'react';
+import { ButtonAtom } from './ButtonAtom';
 
 type Props = {
   buttonHandler: MouseEventHandler<HTMLButtonElement>;
@@ -8,30 +9,28 @@ export const ButtonPanel: React.FC<Props> = ({ buttonHandler }) => {
   return (
     <div>
       <div>
-        <button id={'7'} onClick={buttonHandler}>
-          7
-        </button>
-        <button>8</button>
-        <button>9</button>
-        <button>AC</button>
+        <ButtonAtom id={'7'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'8'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'9'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'AC'} buttonHandler={buttonHandler} />
       </div>
       <div>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>-</button>
+        <ButtonAtom id={'4'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'5'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'6'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'-'} buttonHandler={buttonHandler} />
       </div>
       <div>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>+</button>
+        <ButtonAtom id={'1'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'2'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'3'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'+'} buttonHandler={buttonHandler} />
       </div>
       <div>
-        <button>0</button>
-        <button>.</button>
-        <button>D</button>
-        <button>=</button>
+        <ButtonAtom id={'0'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'.'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'D'} buttonHandler={buttonHandler} />
+        <ButtonAtom id={'='} buttonHandler={buttonHandler} />
       </div>
     </div>
   );
