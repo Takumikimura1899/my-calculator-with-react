@@ -18,6 +18,10 @@ const isDotButton = (button: string) => {
   return button === '.';
 };
 
+const isDeleteButton = (button: string) => {
+  return button === 'D';
+};
+
 const handleNumberButton = (button: string, state: State): State => {
   if (state.current === '0') {
     return {
@@ -73,6 +77,19 @@ const handleDotButton = (state: State): State => {
   };
 };
 
+const handleDeleteButton = (state: State): State => {
+  if (state.current.length === 1) {
+    return {
+      ...state,
+      current: '0',
+    };
+  }
+  return {
+    ...state,
+    current: state.current.substring(0, state.current.length - 1),
+  };
+};
+
 export const calculate = (button: string, state: State): State => {
   // 数値かどうか
   if (isNumberButton(button)) {
@@ -87,8 +104,9 @@ export const calculate = (button: string, state: State): State => {
     return handleDotButton(state);
   }
   // // 削除ボタンかどうか
-  // if (isDeleteButton(button)) {
-  // }
+  if (isDeleteButton(button)) {
+    return handleDeleteButton(state);
+  }
   // // ACかどうか
   // if (isAllClearButton(button)) {
   // }
