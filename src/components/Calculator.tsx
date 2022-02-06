@@ -1,5 +1,12 @@
 import React from 'react';
+import { ButtonPanel } from './ButtonPanel';
+import { Display } from './Display';
 
 export const Calculator = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Display />
+      <ButtonPanel />
+    </div>
+  );
 };
