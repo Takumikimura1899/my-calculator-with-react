@@ -1,5 +1,9 @@
 import React from 'react';
 
-export const Display = () => {
-  return <div>0</div>;
+type Props = {
+  value: string;
+};
+
+export const Display: React.FC<Props> = ({ value }) => {
+  return <div>{value}</div>;
 };
