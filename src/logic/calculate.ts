@@ -31,6 +31,13 @@ const isEqualButton = (button: string) => {
 };
 
 const handleNumberButton = (button: string, state: State): State => {
+  if (state.isNextClear) {
+    return {
+      ...state,
+      current: button,
+      isNextClear: false,
+    };
+  }
   if (state.current === '0') {
     return {
       current: button,
